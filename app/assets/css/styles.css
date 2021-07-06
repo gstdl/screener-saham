@@ -1,0 +1,5 @@
+div#loading {
+    width: 50%;
+    height: 50%;
+    cursor: wait;
+    }

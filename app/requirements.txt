@@ -1,0 +1,6 @@
+Flask==1.1.1
+gunicorn==20.1.0
+pandas==1.2.5
+yfinance==0.1.59
+TA-Lib==0.4.20
+bokeh==2.3.2

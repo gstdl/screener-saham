@@ -1,0 +1,15 @@
+{% extends "index.html" %}
+
+{% block head %}
+    {{ js_resources|indent(4)|safe }}
+    {{ css_resources|indent(4)|safe }}
+    {% for plot_script in plot_scripts %}
+        {{ plot_script|indent(4)|safe }}
+    {% endfor %}
+{% endblock %}
+
+{% block contents %}
+    {% for plot_div in plot_divs %}
+        {{ plot_div | safe }}
+    {% endfor %}
+{% endblock %}

@@ -1,0 +1,6 @@
+*.ipynb
+Dockerfile
+__pycache__
+venv
+pull_data.py
+*.git

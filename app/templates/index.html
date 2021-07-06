@@ -1,0 +1,52 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./assets/css/styles.css" type="text/css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type="text/javascript">
+        window.onload = function() {
+        $("#loading").hide();
+        };
+        function loading(){
+            $("#content").hide();
+            $("#loading").show();
+        }
+    </script>
+    {% block head %}{% endblock %}
+    <title>Candlestick Screener</title>
+</head>
+<body>
+    <div id="loading">
+        <!-- <img src="/assets/img/loading.gif"> -->
+        <img src="https://cdn.dribbble.com/users/115601/screenshots/5356365/loading.gif">
+    </div>
+    <div id="content">
+    <h1>Candlestick Screener</h1>
+    <form>
+        <label for="pattern">Find pattern:</label>
+        <select name="pattern">
+            {% if not selected %}
+                <option value="" selected disabled hidden></option>
+            {% endif %}
+            {% for pattern in patterns %}
+                {% if selected == pattern %}
+                    <option value={{ pattern }} selected>{{ patterns[pattern] }}</option>
+                {% else %}
+                    <option value={{ pattern }}>{{ patterns[pattern] }}</option>
+                {% endif %}
+            {% endfor %}
+        </select>
+        <input type="submit" value="search" onclick="loading();"/>
+    </form>
+    <form method="POST">
+        Database updated at: {{ last_update_time }}
+        <button type="submit" value="Update Database" onclick="loading();">
+            Update Database
+        </button>
+    </form>
+    {% block contents %}{% endblock %}
+    </div>
+</body>
+</html>
