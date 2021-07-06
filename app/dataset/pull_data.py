@@ -137,4 +137,4 @@ def pull_data_klasifikasi_industri():
 
 if __name__ == "__main__":
     pull_data_klasifikasi_industri()
-    # pull_data_yfi()
+    pull_data_yfi()

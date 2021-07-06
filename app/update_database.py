@@ -54,14 +54,14 @@ def update_database():
         start_date += pd.offsets.DateOffset(days=1)
         start_date = datetime.datetime.strftime(start_date, "%Y-%m-%d")
         end_date = datetime.datetime.now()
-        if end_date.hour < 15:
+        if (end_date.hour) < 15:
             end_date -= pd.offsets.DateOffset(days = 1)
-
+        end_date = datetime.datetime.strftime(end_date, "%Y-%m-%d")
         ihsg = (
             yfi.download("^JKSE", start=start_date, end=end_date, progress=False)
             .dropna()
         )[start_date:end_date]
-        print("New Data = ", len(ihsg), " rows\t")
+        print(f"New Data IHSG {start_date}-{end_date}\n", len(ihsg), " rows\t")
         if len(ihsg) > 0:
             print(ihsg)
             ihsg = (
@@ -79,6 +79,7 @@ def update_database():
             """,
             con=con,
             ).iloc[:,0].to_list()
+            print("UPDATING historical TABLE..")
             for i in range(0, len(tickers), 50):
                 ticker = [f"{kode}.JK" for kode in tickers[i : i + 50]]
                 df = (
